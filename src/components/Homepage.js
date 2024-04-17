@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Logo from "../../public/images/Logo.png"
+import Link from 'next/link'
 
 const Homepage = () => {
   return (
@@ -9,7 +10,10 @@ const Homepage = () => {
             <img src={Logo.src} className=""/>
         </div>
     <div className="flex justify-center">
+      <Link href={"/verify"}>
+
     <button className='bg-custom-blue hover:bg-blue-700 text-white font-extrabold py-2 px-4 rounded text-xl'>INSTANT PAY</button>
+      </Link>
     
      </div>
      <p className='flex mb-20 justify-center text-custom-blue'>Your Perfect Payment Partner</p>

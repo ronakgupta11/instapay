@@ -20,9 +20,9 @@ function Navbar() {
         </div>
         <div className='flex items-center justify-around w-full px-4 mt-4 h-10 text-gray-500 text-xl font-bold'>
             <Link href={"/home"} className='border-b-4 border-blue-600 text-blue-600 pb-2'>Home</Link>
-            <Link href={"/home"} className=' pb-2'>Balance</Link>
-            <Link href={"/home"} className=' pb-2'>Offers</Link>
-            <Link href={"/home"} className=' pb-2'>Rewards</Link>
+            <Link href={"/recieve"} className=' pb-2'>Balance</Link>
+            <Link href={"/offers"} className=' pb-2'>Offers</Link>
+            <Link href={"/rewards"} className=' pb-2'>Rewards</Link>
         </div>
     </div>
   )
