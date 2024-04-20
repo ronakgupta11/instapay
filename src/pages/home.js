@@ -3,13 +3,17 @@ import LinkerShort from '@/components/LinkerShort';
 import Navbar from '@/components/Navbar'
 import React from 'react'
 import { LuScanLine } from "react-icons/lu";
+import { useConnect,useAccount } from "wagmi";
 function home() {
+    const {address} = useAccount()
+    console.log(address)
   return (
     <div className='bg-gray-100 min-h-screen w-full'>
         <Navbar/>
         <div className='flex flex-col p-2 space-y-4' >
             <div className='text-2xl font-medium pl-2 '>
                 Money Transfer
+                {`${address}` }
             </div>
             <div className='flex flex-wrap '>
 
