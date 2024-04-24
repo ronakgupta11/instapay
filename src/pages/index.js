@@ -1,30 +1,72 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Homepage from "@/components/Homepage";
-import Verify from "@/components/Verify";
-import BalancePage from "@/components/BalancePage"
-import Profile from "@/components/Profile"
-import RecievePage from "@/components/RecievePage";
-import OfferPage from "@/components/OfferPage";
-import Reward from "@/components/Reward";
-import { useEffect } from "react";
-import { useConnect,useAccount } from "wagmi";
-const inter = Inter({ subsets: ["latin"] });
+import Linker from '@/components/Linker'
+import LinkerShort from '@/components/LinkerShort';
+import React from 'react'
+import { LuScanLine } from "react-icons/lu";
+import { useAccount } from "wagmi";
+import { useState,useEffect } from 'react';
+function home() {
+    const [userAddress, setUserAddress] = useState("");
+    const [isMounted, setIsMounted] = useState(false);
+    const { address, isConnected } = useAccount();
 
-export default function Home() {
-  const { connect } = useConnect();
-  const {address} = useAccount()
-  
-  useEffect(() => {
-    if(window.ethereum && window.ethereum.isMiniPay){
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
-      connect();
+    useEffect(() => {
+        if (isConnected && address) {
+            setUserAddress(address);
+        }
+    }, [address, isConnected]);
+
+    if (!isMounted) {
+        return null;
     }
-  }, []);
-  console.log(address)
+
   return (
-<main>
-<Homepage/>
-</main>
-  );
+    <div className='bg-gray-100 w-full'>
+        <div className='flex flex-col p-2 space-y-4' >
+            <div className='text-2xl font-medium pl-2 '>
+                Money Transfer
+
+            </div>
+            <div className='flex flex-wrap '>
+
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            </div>
+        </div>
+        <div className='flex flex-col p-2 space-y-4' >
+            <div className='text-2xl font-medium pl-2 '>
+                Money Transfer
+          {  `  your wallet address :  ${userAddress}`}
+            </div>
+            <div className='flex flex-wrap '>
+
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            <Linker name={"Scan Qr Code"} icon={<LuScanLine className='w-8 h-8 text-gray-500'/>} link={"/href"}/>
+            </div>
+        </div>
+        <div className='flex flex-col p-2 space-y-4' >
+            <div className='text-2xl font-medium pl-2 '>
+              Ticket Booking
+            </div>
+            <div className='flex'>
+
+            <LinkerShort name={"Flights"} icon={<LuScanLine className='w-8 h-8 text-purple-500 '/>} link={"/href"}/>
+            <LinkerShort name={"Flights"} icon={<LuScanLine className='w-8 h-8 text-purple-500 '/>} link={"/href"}/>
+            <LinkerShort name={"Flights"} icon={<LuScanLine className='w-8 h-8 text-purple-500'/>} link={"/href"}/>
+            <LinkerShort name={"Flights"} icon={<LuScanLine className='w-8 h-8 text-purple-500'/>} link={"/href"}/>
+            <LinkerShort name={"Flights"} icon={<LuScanLine className='w-8 h-8 text-purple-500'/>} link={"/href"}/>
+
+            </div>
+        </div>
+    </div>
+  )
 }
+
+export default home

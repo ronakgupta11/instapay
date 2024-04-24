@@ -1,8 +1,20 @@
 import Link from 'next/link'
 import React from 'react'
 import { FaRegBell,FaMagnifyingGlass } from "react-icons/fa6";
-
+import { useEffect, useState } from "react";
+import { useConnect } from "wagmi";
+import { injected } from "wagmi/connectors";
 function Navbar() {
+    const [hideConnectBtn, setHideConnectBtn] = useState(false);
+    const { connect } = useConnect();
+
+    useEffect(() => {
+        if (window.ethereum && window.ethereum.isMiniPay) {
+            setHideConnectBtn(true);
+            connect({ connector: injected({ target: "metaMask" }) });
+        }
+    }, []);
+
   return (
     <div className='flex flex-col  items-center justify-between w-full h-40 rounded-b-3xl bg-white'>
         <div className='flex items-center justify-between px-4 my-4 w-full h-24'>
